@@ -1,7 +1,7 @@
 # informatization
 小莱管理系统  
 
-使用ssm框架 spring+springMvc mybatis  
+使用SSM框架 半前后端分离 使用json进行交互 未全部使用restful风格开发(学习中)
 
 菜单重复代码预计使用iframe解决  
 
