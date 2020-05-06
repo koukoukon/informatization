@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.hibiki.mapper.UserMapper">
+    <resultMap id="userMap" type="me.hibiki.domain.User">
+        <!--@mbg.generated-->
+        <!--@Table `user`-->
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="user_nickname" jdbcType="VARCHAR" property="userNickname"/>
+        <result column="user_gender" jdbcType="VARCHAR" property="userGender"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="authority_pid" jdbcType="INTEGER" property="authorityPid"/>
+        <result column="department_pid" jdbcType="BIGINT" property="departmentPid"/>
+        <result column="user_delete_flag" jdbcType="INTEGER" property="userDeleteFlag"/>
+    </resultMap>
+    <resultMap id="userExtendMap" type="UserExtend" extends="userMap">
+        <association property="department" javaType="me.hibiki.domain.Department"
+                     resultMap="me.hibiki.mapper.DepartmentMapper.departmentMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        user_id, user_name, user_password, user_nickname, user_gender, user_email, user_phone,
+        authority_pid, department_pid, user_delete_flag
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="userMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from `user`
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    <insert id="insert" parameterType="me.hibiki.domain.User">
+        <!--@mbg.generated-->
+        insert into `user` (user_name, user_password,
+        user_nickname, user_gender, user_email,
+        user_phone, authority_pid, department_pid,
+        user_delete_flag)
+        values (#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR},
+        #{userNickname,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
+        #{userPhone,jdbcType=VARCHAR}, #{authorityPid,jdbcType=INTEGER}, #{departmentPid,jdbcType=BIGINT},
+        #{userDeleteFlag,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="me.hibiki.domain.User">
+        <!--@mbg.generated-->
+        insert into `user`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userPassword != null">
+                user_password,
+            </if>
+            <if test="userNickname != null">
+                user_nickname,
+            </if>
+            <if test="userGender != null">
+                user_gender,
+            </if>
+            <if test="userEmail != null">
+                user_email,
+            </if>
+            <if test="userPhone != null">
+                user_phone,
+            </if>
+            <if test="authorityPid != null">
+                authority_pid,
+            </if>
+            <if test="departmentPid != null">
+                department_pid,
+            </if>
+            <if test="userDeleteFlag != null">
+                user_delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userNickname != null">
+                #{userNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="userGender != null">
+                #{userGender,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="authorityPid != null">
+                #{authorityPid,jdbcType=INTEGER},
+            </if>
+            <if test="departmentPid != null">
+                #{departmentPid,jdbcType=BIGINT},
+            </if>
+            <if test="userDeleteFlag != null">
+                #{userDeleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="me.hibiki.domain.User">
+        <!--@mbg.generated-->
+        update `user`
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userNickname != null">
+                user_nickname = #{userNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="userGender != null">
+                user_gender = #{userGender,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                user_phone = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="authorityPid != null">
+                authority_pid = #{authorityPid,jdbcType=INTEGER},
+            </if>
+            <if test="departmentPid != null">
+                department_pid = #{departmentPid,jdbcType=BIGINT},
+            </if>
+            <if test="userDeleteFlag != null">
+                user_delete_flag = #{userDeleteFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="me.hibiki.domain.User">
+        <!--@mbg.generated-->
+        update `user`
+        set user_name = #{userName,jdbcType=VARCHAR},
+        user_password = #{userPassword,jdbcType=VARCHAR},
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+        user_gender = #{userGender,jdbcType=VARCHAR},
+        user_email = #{userEmail,jdbcType=VARCHAR},
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+        authority_pid = #{authorityPid,jdbcType=INTEGER},
+        department_pid = #{departmentPid,jdbcType=BIGINT},
+        user_delete_flag = #{userDeleteFlag,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <select id="getUserByLogin" resultMap="userMap">
+        select * from user
+        <where>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                and user_password = #{userPassword,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="listSelectiveUsers" resultMap="userExtendMap">
+        select * from user u inner join department d on u.department_pid = d.department_id
+        <where>
+
+            <if test="userName != null and userName != ''">
+                user_name like #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="userNickname != null and userNickname != ''">
+                or nick_name like #{userNickname,jdbcType=VARCHAR}
+            </if>
+            and user_delete_flag = 0
+        </where>
+    </select>
+    <select id="countUserByUserName" resultType="java.lang.Integer">
+        select count(0) from user where user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+    <update id="deleteByUserId">
+        update user set user_delete_flag = 1 where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <update id="deleteByUserIds">
+        update user set user_delete_flag = 1
+        <where>
+            user_id in
+            <foreach collection="array" item="userId" index="index" open="(" separator="," close=")">
+                #{userId,jdbcType=BIGINT}
+            </foreach>
+        </where>
+    </update>
+</mapper>

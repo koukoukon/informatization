@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>小莱信息化管理系统</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <style>
+        div.page-header {
+            margin: 0;
+        }
+
+        ol.breadcrumb {
+            background-color: white;
+            margin: 0;
+        }
+
+        .container-fluid .jumbotron {
+            padding: 0;
+            margin: 0;
+        }
+
+        nav.pagination {
+            text-align: right;
+        }
+
+        ul.pagination {
+            margin: -10px 5px 5px;
+            float: right;
+        }
+
+        .message {
+            color: gray;
+        }
+
+        .error {
+        !important;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="page-header row">
+        <h1>小莱信息化管理系统</h1>
+    </div>
+
+    <div class="row">
+        <ul class="nav nav-pills nav-stacked col-xs-2">
+            <li role="presentation"><a href="../index">主页</a></li>
+            <li role="presentation" class="active"><a href="manage">用户管理</a></li>
+            <li role="presentation"><a href="../dept/manage">部门管理</a></li>
+        </ul>
+        <ol class="breadcrumb col-xs-10">
+            <li><a href="manage">用户管理</a></li>
+            <li class="active">添加用户</li>
+        </ol>
+        <div class="col-xs-10">
+            <form class="form-horizontal" method="post">
+                <input type="hidden" id="userId" name="userId">
+                <div class="form-group">
+                    <label for="userName" class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+                    </div>
+                    <label id="userNameMessage" class="col-sm-3 control-label message">注:用户登录账号,只允许英文字母开头+数字</label>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-3">
+                        <input type="password" class="form-control" id="userPassword" name="userPassword"
+                               placeholder="请输入密码">
+                    </div>
+                    <label id="userPasswordMessage" class="col-sm-3 control-label"></label>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword2" class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-3">
+                        <input type="password" class="form-control" id="userPassword2" name="userPassword2"
+                               placeholder="请再次输入密码">
+                    </div>
+                    <label id="userPasswordMessage2" class="col-sm-3 control-label"></label>
+                </div>
+                <div class="form-group">
+                    <label for="userNickname" class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="userNickname" name="userNickname"
+                               placeholder="请输入昵称">
+                    </div>
+                    <label id="userNicknameMessage" class="col-sm-3 control-label"></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-3">
+                        <label for="male" class="radio-inline">
+                            <input type="radio" name="userGender" id="male" value="男" checked> 男
+                        </label>
+                        <label for="female" class="radio-inline">
+                            <input type="radio" name="userGender" id="female" value="女"> 女
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail" class="col-sm-2 control-label">邮箱</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱地址">
+                    </div>
+                    <label id="userEmailMessage" class="col-sm-3 control-label"></label>
+                </div>
+                <div class="form-group">
+                    <label for="userPhone" class="col-sm-2 control-label">手机号</label>
+                    <div class="col-sm-3">
+                        <input type="tel" class="form-control" id="userPhone" name="userPhone" placeholder="请输入手机号">
+                    </div>
+                    <label id="userPhoneMessage" class="col-sm-3 control-label"></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">部门</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="departmentPid">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">确认添加</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../../js/jquery-3.5.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/user/form.js"></script>
+</body>
+</html>

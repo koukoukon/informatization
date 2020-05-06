@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>小莱信息化管理系统</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <style>
+        div.page-header {
+            margin: 0;
+        }
+
+        ol.breadcrumb {
+            background-color: white;
+            margin: 0;
+        }
+
+        .container-fluid .jumbotron {
+            padding: 0;
+            margin: 0;
+        }
+
+        nav.pagination {
+            text-align: right;
+        }
+
+        ul.pagination {
+            margin: -10px 5px 5px;
+            float: right;
+        }
+
+        .message {
+            color: gray;
+        }
+
+        .error {
+        !important;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="page-header row">
+        <h1>小莱信息化管理系统</h1>
+    </div>
+
+    <div class="row">
+        <ul class="nav nav-pills nav-stacked col-xs-2">
+            <li role="presentation"><a href="../index">主页</a></li>
+            <li role="presentation" ><a href="../user/manage">用户管理</a></li>
+            <li role="presentation" class="active"><a href="manage">部门管理</a></li>
+        </ul>
+        <ol class="breadcrumb col-xs-10">
+            <li><a href="manage">部门管理</a></li>
+            <li class="active">添加部门</li>
+        </ol>
+        <div class="col-xs-10">
+            <form class="form-horizontal" method="post">
+                <input type="hidden" id="departmentId" name="departmentId">
+                <div class="form-group">
+                    <label for="departmentName" class="col-sm-2 control-label">部门名称</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="departmentName" name="departmentName" placeholder="请输入部门名称">
+                    </div>
+                    <label id="departmentNameMessage" class="col-sm-3 control-label message">只允许汉字</label>
+                </div>
+                <div class="form-group">
+                    <label for="departmentComment" class="col-sm-2 control-label">部门备注</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="departmentComment" name="departmentComment" placeholder="请输入部门备注">
+                    </div>
+                    <label id="departmentCommentMessage" class="col-sm-3 control-label message"></label>
+                </div>
+                <div class="form-group">
+                    <label for="departmentNum" class="col-sm-2 control-label">部门编号</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="departmentNum" name="departmentNum" placeholder="请输入部门编号">
+                    </div>
+                    <label id="departmentNumMessage" class="col-sm-3 control-label message"></label>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-default">确认添加</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../../js/jquery-3.5.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/dept/form.js"></script>
+</body>
+</html>
