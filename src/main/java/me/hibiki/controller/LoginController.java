@@ -33,6 +33,10 @@ public class LoginController {
     public String login() {
         return "forward:/WEB-INF/view/login.html";
     }
+    @RequestMapping(path = "/admin/menu")
+    public String menu(){
+        return "forward:/WEB-INF/view/admin/menu.html";
+    }
     @RequestMapping(path = "/admin/index")
     public String index(){
         return "forward:/WEB-INF/view/admin/index.html";

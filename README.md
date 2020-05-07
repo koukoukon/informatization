@@ -1,5 +1,5 @@
 # informatization
-小莱管理系统  
+小莱信息化管理系统  
 
 使用SSM框架 半前后端分离 使用json进行交互 未全部使用restful风格开发(学习中)
 

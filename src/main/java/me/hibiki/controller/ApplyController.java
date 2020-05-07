@@ -1,6 +1,9 @@
 package me.hibiki.controller;
 
+import com.github.pagehelper.PageInfo;
 import me.hibiki.domain.Apply;
+import me.hibiki.domain.ApplyExtend;
+import me.hibiki.domain.ApplyJson;
 import me.hibiki.domain.User;
 import me.hibiki.service.ApplyService;
 import org.springframework.stereotype.Controller;
@@ -37,13 +40,23 @@ public class ApplyController {
     public Map<String, Integer> addApply(Apply apply, @SessionAttribute(name = "user") User user) {        System.out.println(apply);
         //获取当前当登录用户的id
         System.out.println("用户为:"+user);
-        apply.setApplyUserPid(user.getUserId());
+        apply.setUserPid(user.getUserId());
         //需要申请人id 标题 备注 申请时间 状态
-        apply.setApplyDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+        apply.setApplyDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         apply.setApplyStatus(0);
         int i = applyService.insertSelective(apply);
         HashMap<String, Integer> map = new HashMap<>(1);
         map.put("success", i);
         return map;
     }
+    @GetMapping
+    @ResponseBody
+    public ApplyJson listDepartmentsByPagination(int pageNum){
+        PageInfo<ApplyExtend> pageInfo = applyService.listApplyForApprove(pageNum, 5);
+        ApplyJson applyJson = new ApplyJson();
+        applyJson.setApplys(pageInfo.getList());
+        applyJson.setPages(pageInfo.getPages());
+        return applyJson;
+    }
+
 }
