@@ -54,43 +54,35 @@
     <div class="row">
         <ul class="nav nav-pills nav-stacked col-xs-2">
             <li role="presentation"><a href="../index">主页</a></li>
-            <li role="presentation" ><a href="../user/manage">用户管理</a></li>
-            <li role="presentation" class="active"><a href="manage">部门管理</a></li>
-            <li role="presentation" ><a href="../apply/manage">我的申请</a></li>
+            <li role="presentation"><a href="../user/manage">用户管理</a></li>
+            <li role="presentation"><a href="../dept/manage">部门管理</a></li>
+            <li role="presentation" class="active"><a href="manage">我的申请</a></li>
         </ul>
         <ol class="breadcrumb col-xs-10">
-            <li><a href="manage">部门管理</a></li>
-            <li class="active">添加部门</li>
+            <li><a href="manage">我的申请</a></li>
+            <li class="active">发起申请</li>
         </ol>
         <div class="col-xs-10">
             <form class="form-horizontal" method="post">
-                <input type="hidden" id="departmentId" name="departmentId">
+                <input type="hidden" id="applyId" name="applyId">
                 <div class="form-group">
-                    <label for="departmentName" class="col-sm-2 control-label">部门名称</label>
+                    <label for="applyTitle" class="col-sm-2 control-label">申请标题</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="departmentName" name="departmentName" placeholder="请输入部门名称">
+                        <input type="text" class="form-control" id="applyTitle" name="applyTitle" placeholder="请输入标题">
                     </div>
-                    <label id="departmentNameMessage" class="col-sm-3 control-label message">只允许汉字</label>
-                </div>
-                <div class="form-group">
-                    <label for="departmentComment" class="col-sm-2 control-label">部门备注</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" id="departmentComment" name="departmentComment" placeholder="请输入部门备注">
-                    </div>
-                    <label id="departmentCommentMessage" class="col-sm-3 control-label message"></label>
-                </div>
-                <div class="form-group">
-                    <label for="departmentNum" class="col-sm-2 control-label">部门编号</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" id="departmentNum" name="departmentNum" placeholder="请输入部门编号">
-                    </div>
-                    <label id="departmentNumMessage" class="col-sm-3 control-label message"></label>
+                    <label id="applyTitleMessage" class="col-sm-3 control-label message">只允许汉字</label>
                 </div>
 
-
+                <div class="form-group">
+                    <label for="applyComment" class="col-sm-2 control-label">申请备注</label>
+                    <div class="col-sm-3">
+                        <textarea id="applyComment" name="applyComment" class="form-control" rows="3"></textarea>
+                    </div>
+                    <label id="applyCommentMessage" class="col-sm-3 control-label message">只允许汉字</label>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-default">确认添加</button>
+                        <button type="button" class="btn btn-default">提交申请</button>
                     </div>
                 </div>
             </form>
@@ -99,6 +91,24 @@
 </div>
 <script src="../../js/jquery-3.5.0.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/dept/form.js"></script>
+<script src="../../js/apply/form.js"></script>
+<script>
+    $(function () {
+        $("button[type=button]").click(function () {
+            $.ajax({
+                url: "./",
+                type: "post",
+                dataType: "json",
+                data: {
+                    "applyTitle": $("#applyTitle").val(),
+                    "applyComment": $("#applyComment").val(),
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

@@ -45,17 +45,17 @@
     <div class="row">
         <ul class="nav nav-pills nav-stacked col-xs-2">
             <li role="presentation"><a href="../index">主页</a></li>
-            <li role="presentation" class="active"><a href="#">用户管理</a></li>
+            <li role="presentation" ><a href="../user/manage">用户管理</a></li>
             <li role="presentation"><a href="../dept/manage">部门管理</a></li>
-            <li role="presentation"><a href="../apply/manage">我的申请</a></li>
+            <li role="presentation" class="active"><a href="#">我的申请</a></li>
         </ul>
         <ol class="breadcrumb col-xs-10">
-            <li><a href="#">用户管理</a></li>
-            <li class="active">查询用户</li>
+            <li><a href="#">我的申请</a></li>
+            <li class="active">查询申请</li>
         </ol>
         <div id="box" class="jumbotron col-xs-10">
             <div class="panel panel-default">
-                <div class="panel-heading">用户列表</div>
+                <div class="panel-heading">申请列表</div>
                 <div class="panel-body">
                     <div class="btn-group" role="group" aria-label="...">
                         <button id="add" type="button" class="btn btn-default glyphicon glyphicon-plus"> 新增</button>
@@ -69,11 +69,9 @@
                     <tr>
                         <th style="text-align: center;vertical-align: middle"><label for="checkAll">全<input type="checkbox" id="checkAll">选</label></th>
                         <th style='vertical-align: middle'>#</th>
-                        <th style='vertical-align: middle'>姓名</th>
-                        <th style='vertical-align: middle'>性别</th>
-                        <th style='vertical-align: middle'>电话</th>
-                        <th style='vertical-align: middle'>账号</th>
-                        <th style='vertical-align: middle'>部门</th>
+                        <th style='vertical-align: middle'>申请名称</th>
+                        <th style='vertical-align: middle'>申请注释</th>
+                        <th style='vertical-align: middle'>部门编号</th>
                         <th style='vertical-align: middle'>编辑</th>
                     </tr>
                     <tr id="koko"></tr>
@@ -90,6 +88,6 @@
 <script src="../../js/jquery-3.5.0.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/jq-paginator.js"></script>
-<script src="../../js/user/manage.js"></script>
+<script src="../../js/apply/manage.js"></script>
 </body>
 </html>

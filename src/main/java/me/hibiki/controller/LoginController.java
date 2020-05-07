@@ -3,11 +3,14 @@ package me.hibiki.controller;
 import me.hibiki.domain.User;
 import me.hibiki.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +19,7 @@ import java.util.Map;
  * @date 2020/4/29 13:50
  */
 @Controller
+@SessionAttributes(value = {"user"},types = {User.class})
 public class LoginController {
     @Resource
     private UserService userService;
@@ -35,7 +39,7 @@ public class LoginController {
     }
     @RequestMapping(path = "/login", method = RequestMethod.POST, params = {"username", "password"})
     @ResponseBody
-    public Map login(String username, String password) {
+    public Map<String,Integer> login(String username, String password, Model model, HttpSession httpSession) {
         User user = new User();
         user.setUserName(username);
         user.setUserPassword(password);
@@ -44,6 +48,8 @@ public class LoginController {
         if (loginUser == null) {
             statusMap.put("status", -1);
         } else {
+            System.out.println("登录成功:"+loginUser);
+            model.addAttribute("user",loginUser);
             statusMap.put("status", 1);
         }
         return statusMap;
