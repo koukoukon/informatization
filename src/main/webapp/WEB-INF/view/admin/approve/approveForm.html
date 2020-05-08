@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>小莱信息化管理系统</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <style>
+        div.page-header {
+            margin: 0;
+        }
+
+        ol.breadcrumb {
+            background-color: white;
+            margin: 0;
+        }
+
+        .container-fluid .jumbotron {
+            padding: 0;
+            margin: 0;
+        }
+
+        nav.pagination {
+            text-align: right;
+        }
+
+        ul.pagination {
+            margin: -10px 5px 5px;
+            float: right;
+        }
+
+        .message {
+            color: gray;
+        }
+
+        .error {
+        !important;
+            color: red;
+        }
+        a{
+            color: black;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        .myRight{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="page-header row">
+        <h1>小莱信息化管理系统</h1>
+    </div>
+
+    <div class="row">
+        <iframe src="../menu.html" frameborder="0" height="642" class="col-xs-2"></iframe>
+        <ol class="breadcrumb col-xs-10">
+            <li><a href="manage">申请管理</a></li>
+            <li class="active">审批申请</li>
+        </ol>
+        <div class="col-xs-10">
+            <form class="form-horizontal" method="post">
+                <div class="panel panel-primary">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title">申请审批</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group" >
+                            <label class="col-sm-2 myRight">申请标题</label>
+                            <p id="applyTitle"></p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 myRight">申请内容</label>
+                            <p id="applyComment"></p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 myRight">申请时间</label>
+                            <p id="applyDate"></p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 myRight">申请人</label>
+                            <p id="userNickname"></p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 myRight">申请状态</label>
+                            <p id="applyStatus"></p>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <input type="hidden" id="applyPid" name="applyPid">
+                        <div class="form-group">
+                            <label for="approveComment" class="col-sm-2 control-label">审批意见</label>
+                            <div class="col-sm-3">
+                                <textarea type="text" rows="3" class="form-control" id="approveComment" name="approveComment" placeholder="请输入审批意见"></textarea>
+                            </div>
+                            <label id="approveCommentMessage" class="col-sm-3 message">只允许汉字</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">审批结果</label>
+                            <div class="col-sm-3">
+                                <label for="dissent" class="radio-inline">
+                                    <input type="radio" name="approveStatus" id="dissent" value="1" checked> 同意(需上级审批)
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="disagree" class="radio-inline">
+                                    <input type="radio" name="approveStatus" id="disagree" value="2"> 不同意
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="agree" class="radio-inline">
+                                    <input type="radio" name="approveStatus" id="agree" value="-1"> 同意并结束
+                                </label>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-default">审批完成</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../../js/jquery-3.5.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/approve/form.js"></script>
+</body>
+</html>

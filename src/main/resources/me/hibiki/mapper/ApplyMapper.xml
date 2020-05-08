@@ -147,5 +147,8 @@
   <select id="listApplyForApprove" resultMap="applyExtentMap">
     select a.*,u.* from apply a left join user u on a.user_pid = u.user_id where a.apply_end_date is null order by a.apply_id desc
   </select>
+  <select id="getApplyExtendById" resultMap="applyExtentMap">
+    select a.*,u.* from apply a left join user u on a.user_pid = u.user_id where a.apply_id = #{applyId,jdbcType=BIGINT}
+  </select>
 
 </mapper>

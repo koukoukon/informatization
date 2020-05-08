@@ -20,5 +20,6 @@ public interface ApplyService{
     int updateByPrimaryKey(Apply record);
 
     PageInfo<ApplyExtend> listApplyForApprove(int pageNum,int pageSize);
+    ApplyExtend getApplyExtendById(Long applyId);
 
 }

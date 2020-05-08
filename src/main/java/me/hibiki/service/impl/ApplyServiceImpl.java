@@ -53,4 +53,9 @@ public class ApplyServiceImpl implements ApplyService {
         List<ApplyExtend> applyExtends = applyMapper.listApplyForApprove();
         return new PageInfo<ApplyExtend>(applyExtends);
     }
+
+    @Override
+    public ApplyExtend getApplyExtendById(Long applyId) {
+        return applyMapper.getApplyExtendById(applyId);
+    }
 }

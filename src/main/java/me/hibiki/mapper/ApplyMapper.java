@@ -18,4 +18,5 @@ public interface ApplyMapper {
 
     int updateByPrimaryKey(Apply record);
     List<ApplyExtend> listApplyForApprove();
+    ApplyExtend getApplyExtendById(Long applyId);
 }

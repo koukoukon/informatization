@@ -35,6 +35,7 @@ public class ApplyController {
         return "forward:/WEB-INF/view/admin/apply/applyManage.html";
     }
 
+
     @PostMapping
     @ResponseBody
     public Map<String, Integer> addApply(Apply apply, @SessionAttribute(name = "user") User user) {        System.out.println(apply);
@@ -57,6 +58,12 @@ public class ApplyController {
         applyJson.setApplys(pageInfo.getList());
         applyJson.setPages(pageInfo.getPages());
         return applyJson;
+    }
+    @GetMapping(path = "/{applyId}")
+    @ResponseBody
+    public ApplyExtend getApplyExtendById(@PathVariable Long applyId){
+        System.out.println(applyId);
+        return applyService.getApplyExtendById(applyId);
     }
 
 }

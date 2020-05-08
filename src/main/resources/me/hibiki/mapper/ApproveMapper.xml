@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.hibiki.mapper.ApproveMapper">
+  <resultMap id="BaseResultMap" type="me.hibiki.domain.Approve">
+    <!--@mbg.generated-->
+    <!--@Table approve-->
+    <id column="approve_id" jdbcType="BIGINT" property="approveId" />
+    <result column="apply_pid" jdbcType="BIGINT" property="applyPid" />
+    <result column="user_pid" jdbcType="BIGINT" property="userPid" />
+    <result column="approve_comment" jdbcType="VARCHAR" property="approveComment" />
+    <result column="approve_date" jdbcType="TIMESTAMP" property="approveDate" />
+    <result column="approve_status" jdbcType="INTEGER" property="approveStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    approve_id, apply_pid, user_pid, approve_comment, approve_date, approve_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from approve
+    where approve_id = #{approveId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from approve
+    where approve_id = #{approveId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="approve_id" keyProperty="approveId" parameterType="me.hibiki.domain.Approve" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into approve (apply_pid, user_pid, approve_comment, 
+      approve_date, approve_status)
+    values (#{applyPid,jdbcType=BIGINT}, #{userPid,jdbcType=BIGINT}, #{approveComment,jdbcType=VARCHAR}, 
+      #{approveDate,jdbcType=TIMESTAMP}, #{approveStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="approve_id" keyProperty="approveId" parameterType="me.hibiki.domain.Approve" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into approve
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyPid != null">
+        apply_pid,
+      </if>
+      <if test="userPid != null">
+        user_pid,
+      </if>
+      <if test="approveComment != null">
+        approve_comment,
+      </if>
+      <if test="approveDate != null">
+        approve_date,
+      </if>
+      <if test="approveStatus != null">
+        approve_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyPid != null">
+        #{applyPid,jdbcType=BIGINT},
+      </if>
+      <if test="userPid != null">
+        #{userPid,jdbcType=BIGINT},
+      </if>
+      <if test="approveComment != null">
+        #{approveComment,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDate != null">
+        #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveStatus != null">
+        #{approveStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.hibiki.domain.Approve">
+    <!--@mbg.generated-->
+    update approve
+    <set>
+      <if test="applyPid != null">
+        apply_pid = #{applyPid,jdbcType=BIGINT},
+      </if>
+      <if test="userPid != null">
+        user_pid = #{userPid,jdbcType=BIGINT},
+      </if>
+      <if test="approveComment != null">
+        approve_comment = #{approveComment,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDate != null">
+        approve_date = #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveStatus != null">
+        approve_status = #{approveStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where approve_id = #{approveId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.hibiki.domain.Approve">
+    <!--@mbg.generated-->
+    update approve
+    set apply_pid = #{applyPid,jdbcType=BIGINT},
+      user_pid = #{userPid,jdbcType=BIGINT},
+      approve_comment = #{approveComment,jdbcType=VARCHAR},
+      approve_date = #{approveDate,jdbcType=TIMESTAMP},
+      approve_status = #{approveStatus,jdbcType=INTEGER}
+    where approve_id = #{approveId,jdbcType=BIGINT}
+  </update>
+</mapper>

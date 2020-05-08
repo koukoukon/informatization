@@ -13,6 +13,7 @@
             <li id="user" role="presentation"><a href="#">用户管理</a></li>
             <li id="dept" role="presentation"><a href="#">部门管理</a></li>
             <li id="apply" role="presentation"><a href="#">我的申请</a></li>
+            <li id="approve" role="presentation"><a href="#">申请管理</a></li>
         </ul>
     </div>
 </div>
@@ -28,8 +29,10 @@
             $("ul.nav>li[id=user]").addClass("active");
         } else if (parent.location.href.lastIndexOf("dept") > -1) {
             $("ul.nav>li[id=dept]").addClass("active");
-        } else if (parent.location.href.lastIndexOf("apply") > -1) {
+        }else if (parent.location.href.lastIndexOf("apply") > -1) {
             $("ul.nav>li[id=apply]").addClass("active");
+        } else if (parent.location.href.lastIndexOf("approve") > -1){
+            $("ul.nav>li[id=approve]").addClass("active");
         }
         //菜单项迪纳基时间
         $("ul.nav >li").each(function () {
@@ -47,13 +50,12 @@
                     case "apply":
                         parent.location.href = contextPath + "admin/apply/manage";
                         break;
-
+                        case "approve":
+                            parent.location.href = contextPath + "admin/approve/manage";
+                            break;
                 }
-
             })
-
         })
-
     })
 </script>
 </body>

@@ -47,6 +47,18 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="informatization:approve">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="approve_id" />
+                  <option name="javaModelName" value="Approve" />
+                  <option name="moduleName" value="informatization" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="informatization:department">
               <value>
                 <TableGenerateConfig>
