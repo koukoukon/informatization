@@ -3,7 +3,7 @@ var pageSize = 5;
 var pages;
 $(function () {
     $.ajax({
-        url: "./",
+        url: "myApply",
         type: "get",
         dataType: "json",
         data: {
@@ -17,6 +17,11 @@ $(function () {
     $("#add").click(function () {
         location.href = "add";
     })
+    $(document).on("click", ".edit", function () {
+        let applyId = $(this).attr("applyId");
+        sessionStorage.setItem("applyId", applyId);
+        location.href = "view";
+    })
 })
 function loadPage() {
     $('ul.pagination').jqPaginator({
@@ -26,7 +31,7 @@ function loadPage() {
             if (type == "change") {
                 pageNum = num;
                 $.ajax({
-                    url: "./",
+                    url: "myApply",
                     type: "get",
                     dataType: "json",
                     data: {
@@ -51,7 +56,7 @@ function parseJson(data) {
                 html += "<td style='vertical-align: middle'>" + data[i][j]["user"]["userNickname"] + "</td>";
                 html += "<td style='vertical-align: middle'>" + data[i][j]["applyTitle"] + "</td>";
                 html += "<td style='vertical-align: middle'>" + data[i][j]["applyDate"] + "</td>";
-                html += "<td style='vertical-align: middle'><button deptId='" + data[i][j]["applyId"] + "'type='button' class='btn btn-default glyphicon glyphicon-pencil edit'>修改</button>"
+                html += "<td style='vertical-align: middle'><button applyId='" + data[i][j]["applyId"] + "'type='button' class='btn btn-default glyphicon glyphicon-pencil edit'>查看</button>"
                 html += "</tr>";
             }
             $("#koko~tr").remove();

@@ -58,4 +58,11 @@ public class ApplyServiceImpl implements ApplyService {
     public ApplyExtend getApplyExtendById(Long applyId) {
         return applyMapper.getApplyExtendById(applyId);
     }
+
+    @Override
+    public PageInfo<ApplyExtend> listByUserPidApply(Long userPid, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<ApplyExtend> applyExtends = applyMapper.listByUserPidApply(userPid);
+        return new PageInfo<ApplyExtend>(applyExtends);
+    }
 }

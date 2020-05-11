@@ -21,5 +21,6 @@ public interface ApplyService{
 
     PageInfo<ApplyExtend> listApplyForApprove(int pageNum,int pageSize);
     ApplyExtend getApplyExtendById(Long applyId);
+    PageInfo<ApplyExtend> listByUserPidApply(Long userPid,int pageNum,int pageSize);
 
 }

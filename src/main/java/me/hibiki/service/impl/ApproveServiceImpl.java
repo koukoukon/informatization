@@ -1,15 +1,26 @@
 package me.hibiki.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import me.hibiki.mapper.ApproveMapper;
+import me.hibiki.domain.Apply;
 import me.hibiki.domain.Approve;
+import me.hibiki.domain.ApproveExtend;
+import me.hibiki.domain.User;
+import me.hibiki.mapper.ApplyMapper;
+import me.hibiki.mapper.ApproveMapper;
 import me.hibiki.service.ApproveService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class ApproveServiceImpl implements ApproveService{
 
     @Resource
     private ApproveMapper approveMapper;
+    @Resource
+    private ApplyMapper applyMapper;
 
     @Override
     public int deleteByPrimaryKey(Long approveId) {
@@ -22,8 +33,18 @@ public class ApproveServiceImpl implements ApproveService{
     }
 
     @Override
-    public int insertSelective(Approve record) {
-        return approveMapper.insertSelective(record);
+    public int insertSelective(Approve record,User user) {
+        int i =0;
+        if (record.getApproveStatus()==2||record.getApproveStatus()==-1){
+            Apply apply = applyMapper.selectByPrimaryKey(record.getApplyPid());
+            apply.setApproveComment(record.getApproveComment());
+            apply.setApproveUserPid(user.getUserId());
+            apply.setApplyStatus(record.getApproveStatus());
+            apply.setApplyEndDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            i = applyMapper.updateByPrimaryKeySelective(apply);
+        }
+        int j = approveMapper.insertSelective(record);
+        return i+j;
     }
 
     @Override
@@ -41,4 +62,8 @@ public class ApproveServiceImpl implements ApproveService{
         return approveMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<ApproveExtend> listByApplyPidApproves(Long applyPid) {
+        return approveMapper.listByApplyPidApproves(applyPid);
+    }
 }

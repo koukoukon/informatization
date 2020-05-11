@@ -9,7 +9,7 @@ function loadPageForAddOrEdit() {
     if (applyId != null) {
         $("#applyPid").val(applyId);
         $.ajax({
-            url: "../apply/" + applyId,
+            url: applyId,
             type: "get",
             success: function (data) {
                 $("#applyTitle").html(data["applyTitle"])
@@ -20,6 +20,8 @@ function loadPageForAddOrEdit() {
                     $("#applyStatus").html("待审批");
                 } else if (data["applyStatus"] == 1) {
                     $("#applyStatus").html("需上级审批");
+                }else if (data["applyStatus"] == -1){
+                    $("#applyStatus").html("已同意");
                 }
             }
         })
@@ -29,7 +31,7 @@ function loadPageForAddOrEdit() {
 
 function loadApproveRecord() {
     $.ajax({
-        url: "./",
+        url: "../approve",
         type: "get",
         data: {
             "applyPid": applyId

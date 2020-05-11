@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="me.hibiki.mapper.ApproveMapper">
-  <resultMap id="BaseResultMap" type="me.hibiki.domain.Approve">
+  <resultMap id="approveMap" type="me.hibiki.domain.Approve">
     <!--@mbg.generated-->
     <!--@Table approve-->
     <id column="approve_id" jdbcType="BIGINT" property="approveId" />
@@ -11,11 +11,15 @@
     <result column="approve_date" jdbcType="TIMESTAMP" property="approveDate" />
     <result column="approve_status" jdbcType="INTEGER" property="approveStatus" />
   </resultMap>
+  <resultMap id="approveExtendMap" type="ApproveExtend" extends="approveMap">
+    <association property="user" javaType="me.hibiki.domain.User" resultMap="me.hibiki.mapper.UserMapper.userMap"/>
+
+  </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     approve_id, apply_pid, user_pid, approve_comment, approve_date, approve_status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="approveMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
@@ -104,4 +108,7 @@
       approve_status = #{approveStatus,jdbcType=INTEGER}
     where approve_id = #{approveId,jdbcType=BIGINT}
   </update>
+  <select id="listByApplyPidApproves" resultMap="approveExtendMap">
+    select a.*,u.* from approve a left join user u on a.user_pid=u.user_id where a.apply_pid = #{applyPid,jdbcType=BIGINT};
+  </select>
 </mapper>

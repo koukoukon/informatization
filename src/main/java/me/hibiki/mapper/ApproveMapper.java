@@ -1,6 +1,9 @@
 package me.hibiki.mapper;
 
 import me.hibiki.domain.Approve;
+import me.hibiki.domain.ApproveExtend;
+
+import java.util.List;
 
 public interface ApproveMapper {
     int deleteByPrimaryKey(Long approveId);
@@ -14,4 +17,6 @@ public interface ApproveMapper {
     int updateByPrimaryKeySelective(Approve record);
 
     int updateByPrimaryKey(Approve record);
+
+    List<ApproveExtend> listByApplyPidApproves(Long applyPid);
 }

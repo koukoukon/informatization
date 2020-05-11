@@ -1,7 +1,7 @@
 package me.hibiki.controller;
 
-import me.hibiki.domain.Apply;
 import me.hibiki.domain.Approve;
+import me.hibiki.domain.ApproveExtend;
 import me.hibiki.domain.User;
 import me.hibiki.service.ApplyService;
 import me.hibiki.service.ApproveService;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,16 +41,16 @@ public class ApproveController {
     public Map<String, Integer> approve(Approve approve, @SessionAttribute("user") User user) {
         approve.setUserPid(user.getUserId());
         approve.setApproveDate(new Date());
-        int i = approveService.insertSelective(approve);
-
-        Apply apply = applyService.selectByPrimaryKey(approve.getApplyPid());
-        apply.setApproveComment(approve.getApproveComment());
-        apply.setApproveUserPid(user.getUserId());
-        apply.setApplyStatus(approve.getApproveStatus());
-        int j = applyService.updateByPrimaryKeySelective(apply);
+        int i = approveService.insertSelective(approve, user);
         HashMap<String, Integer> map = new HashMap<String, Integer>(1);
 
-        map.put("success", i + j);
+        map.put("success", i);
         return map;
+    }
+
+    @GetMapping
+    @ResponseBody
+    public List<ApproveExtend> listByApplyPidApproves(Long applyPid) {
+        return approveService.listByApplyPidApproves(applyPid);
     }
 }

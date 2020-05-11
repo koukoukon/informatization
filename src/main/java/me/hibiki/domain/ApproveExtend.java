@@ -5,10 +5,10 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author 高弘昆
- * @date 2020/5/7 15:43
+ * @date 2020/5/11 11:26
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ApplyExtend extends Apply{
+public class ApproveExtend extends Approve{
     private User user;
 }

@@ -27,12 +27,16 @@ public class ApplyController {
 
     @RequestMapping(path = "/add", method = RequestMethod.GET)
     public String addHtml() {
-        return "forward:/WEB-INF/view/admin/apply/applyForm.html";
+        return "forward:/WEB-INF/view/admin/apply/applyAdd.html";
     }
 
     @RequestMapping(path = "/manage", method = RequestMethod.GET)
     public String manageHtml() {
         return "forward:/WEB-INF/view/admin/apply/applyManage.html";
+    }
+    @RequestMapping(path = "/view", method = RequestMethod.GET)
+    public String viewHtml() {
+        return "forward:/WEB-INF/view/admin/apply/applyView.html";
     }
 
 
@@ -65,5 +69,13 @@ public class ApplyController {
         System.out.println(applyId);
         return applyService.getApplyExtendById(applyId);
     }
-
+    @GetMapping(path = "myApply")
+    @ResponseBody
+    public ApplyJson listDepartmentsByUserPid(int pageNum,@SessionAttribute("user") User user){
+        PageInfo<ApplyExtend> pageInfo = applyService.listByUserPidApply(user.getUserId(),pageNum, 5);
+        ApplyJson applyJson = new ApplyJson();
+        applyJson.setApplys(pageInfo.getList());
+        applyJson.setPages(pageInfo.getPages());
+        return applyJson;
+    }
 }
