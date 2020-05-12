@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.hibiki.mapper.UserFileMapper">
+    <resultMap id="userFileMap" type="me.hibiki.domain.UserFile">
+        <!--@mbg.generated-->
+        <!--@Table user_file-->
+        <id column="user_file_id" jdbcType="BIGINT" property="userFileId"/>
+        <result column="user_file_name" jdbcType="VARCHAR" property="userFileName"/>
+        <result column="user_file_title" jdbcType="VARCHAR" property="userFileTitle"/>
+        <result column="user_file_comment" jdbcType="VARCHAR" property="userFileComment"/>
+        <result column="user_file_date" jdbcType="VARCHAR" property="userFileDate"/>
+        <result column="user_pid" jdbcType="BIGINT" property="userPid"/>
+        <result column="user_file_delete_flag" jdbcType="INTEGER" property="userFileDeleteFlag"/>
+    </resultMap>
+    <resultMap id="userFileExtendMap" type="UserFileExtend" extends="userFileMap">
+        <association property="user" javaType="me.hibiki.domain.User" resultMap="me.hibiki.mapper.UserMapper.userMap"/>
+        <association property="department" javaType="me.hibiki.domain.Department"
+                     resultMap="me.hibiki.mapper.DepartmentMapper.departmentMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        user_file_id, user_file_name, user_file_title, user_file_comment, user_file_date,
+        user_pid, user_file_delete_flag
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="userFileMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_file
+        where user_file_id = #{userFileId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from user_file
+        where user_file_id = #{userFileId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="user_file_id" keyProperty="userFileId" parameterType="me.hibiki.domain.UserFile"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_file (user_file_name, user_file_title, user_file_comment,
+        user_file_date, user_pid, user_file_delete_flag)
+        values (#{userFileName,jdbcType=VARCHAR}, #{userFileTitle,jdbcType=VARCHAR},
+        #{userFileComment,jdbcType=VARCHAR},
+        #{userFileDate,jdbcType=VARCHAR}, #{userPid,jdbcType=BIGINT}, #{userFileDeleteFlag,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="user_file_id" keyProperty="userFileId"
+            parameterType="me.hibiki.domain.UserFile" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userFileName != null">
+                user_file_name,
+            </if>
+            <if test="userFileTitle != null">
+                user_file_title,
+            </if>
+            <if test="userFileComment != null">
+                user_file_comment,
+            </if>
+            <if test="userFileDate != null">
+                user_file_date,
+            </if>
+            <if test="userPid != null">
+                user_pid,
+            </if>
+            <if test="userFileDeleteFlag != null">
+                user_file_delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userFileName != null">
+                #{userFileName,jdbcType=VARCHAR},
+            </if>
+            <if test="userFileTitle != null">
+                #{userFileTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="userFileComment != null">
+                #{userFileComment,jdbcType=VARCHAR},
+            </if>
+            <if test="userFileDate != null">
+                #{userFileDate,jdbcType=VARCHAR},
+            </if>
+            <if test="userPid != null">
+                #{userPid,jdbcType=BIGINT},
+            </if>
+            <if test="userFileDeleteFlag != null">
+                #{userFileDeleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="me.hibiki.domain.UserFile">
+        <!--@mbg.generated-->
+        update user_file
+        <set>
+            <if test="userFileName != null">
+                user_file_name = #{userFileName,jdbcType=VARCHAR},
+            </if>
+            <if test="userFileTitle != null">
+                user_file_title = #{userFileTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="userFileComment != null">
+                user_file_comment = #{userFileComment,jdbcType=VARCHAR},
+            </if>
+            <if test="userFileDate != null">
+                user_file_date = #{userFileDate,jdbcType=VARCHAR},
+            </if>
+            <if test="userPid != null">
+                user_pid = #{userPid,jdbcType=BIGINT},
+            </if>
+            <if test="userFileDeleteFlag != null">
+                user_file_delete_flag = #{userFileDeleteFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_file_id = #{userFileId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="me.hibiki.domain.UserFile">
+        <!--@mbg.generated-->
+        update user_file
+        set user_file_name = #{userFileName,jdbcType=VARCHAR},
+        user_file_title = #{userFileTitle,jdbcType=VARCHAR},
+        user_file_comment = #{userFileComment,jdbcType=VARCHAR},
+        user_file_date = #{userFileDate,jdbcType=VARCHAR},
+        user_pid = #{userPid,jdbcType=BIGINT},
+        user_file_delete_flag = #{userFileDeleteFlag,jdbcType=INTEGER}
+        where user_file_id = #{userFileId,jdbcType=BIGINT}
+    </update>
+    <select id="listUserFileExtends" resultMap="userFileExtendMap">
+        select f.*,u.*,d.* from user_file f left join user u on f.user_pid = u.user_id left join department d on u.department_pid = d.department_id
+    </select>
+    <select id="listByUserPidUserFileExtends" resultMap="userFileExtendMap">
+        select f.*,u.*,d.* from user_file f left join user u on f.user_pid = u.user_id left join department d on u.department_pid = d.department_id where user_pid = #{userPid,jdbcType=BIGINT}
+    </select>
+</mapper>

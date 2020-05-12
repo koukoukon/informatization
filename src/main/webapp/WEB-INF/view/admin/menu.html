@@ -15,6 +15,7 @@
             <li id="apply" role="presentation"><a href="#">我的申请</a></li>
             <li id="approve" role="presentation"><a href="#">申请管理</a></li>
             <li id="message" role="presentation"><a href="#">消息管理</a></li>
+            <li id="myFile" role="presentation"><a href="#">我的文件</a></li>
             <li id="file" role="presentation"><a href="#">文件管理</a></li>
         </ul>
     </div>
@@ -31,12 +32,16 @@
             $("ul.nav>li[id=user]").addClass("active");
         } else if (parent.location.href.lastIndexOf("dept") > -1) {
             $("ul.nav>li[id=dept]").addClass("active");
-        }else if (parent.location.href.lastIndexOf("apply") > -1) {
+        } else if (parent.location.href.lastIndexOf("apply") > -1) {
             $("ul.nav>li[id=apply]").addClass("active");
-        } else if (parent.location.href.lastIndexOf("approve") > -1){
+        } else if (parent.location.href.lastIndexOf("approve") > -1) {
             $("ul.nav>li[id=approve]").addClass("active");
+        } else if (parent.location.href.lastIndexOf("view") > -1) {
+            $("ul.nav>li[id=myFile]").addClass("active");
+        } else if (parent.location.href.lastIndexOf("file") > -1) {
+            $("ul.nav>li[id=file]").addClass("active");
         }
-        //菜单项迪纳基时间
+        //菜单项被点击时
         $("ul.nav >li").each(function () {
             $(this).click(function () {
                 switch ($(this).attr("id")) {
@@ -52,9 +57,15 @@
                     case "apply":
                         parent.location.href = contextPath + "admin/apply/manage";
                         break;
-                        case "approve":
-                            parent.location.href = contextPath + "admin/approve/manage";
-                            break;
+                    case "approve":
+                        parent.location.href = contextPath + "admin/approve/manage";
+                        break;
+                    case "myFile":
+                        parent.location.href = contextPath + "admin/file/view"
+                        break;
+                    case "file":
+                        parent.location.href = contextPath + "admin/file/manage";
+                        break;
                 }
             })
         })
