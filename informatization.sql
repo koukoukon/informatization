@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 07/05/2020 16:59:55
+ Date: 03/06/2020 22:07:43
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `apply`  (
   PRIMARY KEY (`apply_id`) USING BTREE,
   INDEX `FK1615FA3D51E1F6`(`approve_user_pid`) USING BTREE,
   INDEX `FK1615FA3C8F82AB5`(`user_pid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of apply
@@ -47,7 +47,7 @@ INSERT INTO `apply` VALUES (17, '加班申请2', '加班申请2', 1, '2020-05-07
 INSERT INTO `apply` VALUES (18, '请假申请', '请假申请', 1, '2020-05-07 04:14:23', NULL, NULL, NULL, 0);
 INSERT INTO `apply` VALUES (19, '离职申请', '离职申请', 1, '2020-05-07 04:14:30', NULL, NULL, NULL, 0);
 INSERT INTO `apply` VALUES (20, '请假申请', '探亲', 1, '2020-05-07 04:36:51', NULL, NULL, NULL, 0);
-INSERT INTO `apply` VALUES (21, '测试', '', 1, '2020-05-07 04:39:43', NULL, NULL, NULL, 0);
+INSERT INTO `apply` VALUES (21, '测试', '测试', 1, '2020-05-11 21:04:45', '2020-05-11 21:06:12', '同意2', 1, -1);
 
 -- ----------------------------
 -- Table structure for approve
@@ -61,7 +61,18 @@ CREATE TABLE `approve`  (
   `approve_date` datetime(0) NULL DEFAULT NULL,
   `approve_status` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`approve_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of approve
+-- ----------------------------
+INSERT INTO `approve` VALUES (1, 21, 1, '同意', '2020-05-08 18:54:01', 1);
+INSERT INTO `approve` VALUES (2, 21, 1, '同意', '2020-05-08 19:02:26', 1);
+INSERT INTO `approve` VALUES (3, 21, 1, '同意', '2020-05-08 19:04:32', 1);
+INSERT INTO `approve` VALUES (4, 21, 1, '同意', '2020-05-11 20:59:41', -1);
+INSERT INTO `approve` VALUES (5, 21, 1, '同意', '2020-05-11 21:03:19', -1);
+INSERT INTO `approve` VALUES (6, 21, 1, '同意', '2020-05-11 21:04:45', -1);
+INSERT INTO `approve` VALUES (7, 21, 1, '同意2', '2020-05-11 21:06:13', -1);
 
 -- ----------------------------
 -- Table structure for askforleave2
@@ -80,7 +91,7 @@ CREATE TABLE `askforleave2`  (
   INDEX `FKDAB35D7C879016C7`(`apply_user_pid`) USING BTREE,
   INDEX `FKDAB35D7CBCB3F055`(`department_pid`) USING BTREE,
   CONSTRAINT `FKDAB35D7CBCB3F055` FOREIGN KEY (`department_pid`) REFERENCES `department` (`department_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of askforleave2
@@ -99,7 +110,7 @@ CREATE TABLE `authandsourceinfo`  (
   `menuTitle_Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `source_Url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`authandsourceinfoid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of authandsourceinfo
@@ -125,7 +136,7 @@ CREATE TABLE `department`  (
   `department_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `department_delete_flag` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`department_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of department
@@ -152,7 +163,7 @@ CREATE TABLE `master`  (
   `mark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `mastername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`masterid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of master
@@ -180,9 +191,9 @@ CREATE TABLE `messageinfo`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK6A3D1DAAC13EED5B`(`sendUser_id`) USING BTREE,
   INDEX `FK6A3D1DAA8D8D4E9B`(`reciveUser_id`) USING BTREE,
-  CONSTRAINT `FK6A3D1DAA8D8D4E9B` FOREIGN KEY (`reciveUser_id`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK6A3D1DAAC13EED5B` FOREIGN KEY (`sendUser_id`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  CONSTRAINT `FK6A3D1DAA8D8D4E9B` FOREIGN KEY (`reciveUser_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK6A3D1DAAC13EED5B` FOREIGN KEY (`sendUser_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of messageinfo
@@ -216,7 +227,7 @@ CREATE TABLE `user`  (
   INDEX `FK94B9B0D6BCB3F055`(`department_pid`) USING BTREE,
   CONSTRAINT `FK94B9B0D6BCB3F055` FOREIGN KEY (`department_pid`) REFERENCES `department` (`department_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FKs1rnm14ev9cb4bbxcspqmcto3` FOREIGN KEY (`department_pid`) REFERENCES `department` (`department_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
@@ -239,34 +250,34 @@ INSERT INTO `user` VALUES (16, '6669', '666', '666', '男', '666', '666', 1, 1, 
 INSERT INTO `user` VALUES (17, 'sxc', 'sxc', 'sxc', '男', 'sxc', 'sxc', 1, 1, 0);
 
 -- ----------------------------
--- Table structure for userfile
+-- Table structure for user_file
 -- ----------------------------
-DROP TABLE IF EXISTS `userfile`;
-CREATE TABLE `userfile`  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `createDate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `deleteflag` int(0) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `user_id` bigint(0) NULL DEFAULT NULL,
-  `department_id` bigint(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FK4C4A4352342BC5E3`(`user_id`) USING BTREE,
-  INDEX `FK4C4A4352BCB3F055`(`department_id`) USING BTREE,
-  CONSTRAINT `FK4C4A4352342BC5E3` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK4C4A4352BCB3F055` FOREIGN KEY (`department_id`) REFERENCES `t_department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK54ih4f631noix1tv1o5pgarlp` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK6kjc9r7q0j4j6p9f7abimm089` FOREIGN KEY (`department_id`) REFERENCES `t_department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `user_file`;
+CREATE TABLE `user_file`  (
+  `user_file_id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `user_file_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_file_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_file_comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_file_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_pid` bigint(0) NULL DEFAULT NULL,
+  `user_file_delete_flag` int(0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_file_id`) USING BTREE,
+  INDEX `FK4C4A4352342BC5E3`(`user_pid`) USING BTREE,
+  CONSTRAINT `FK4C4A4352342BC5E3` FOREIGN KEY (`user_pid`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK54ih4f631noix1tv1o5pgarlp` FOREIGN KEY (`user_pid`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of userfile
+-- Records of user_file
 -- ----------------------------
-INSERT INTO `userfile` VALUES (1, '转正申请', '2017-04-18 20:01', 1, '1492516881087.txt', '转正', 1, 1);
-INSERT INTO `userfile` VALUES (2, '转正申请', '2018-01-29 13:53:13', 1, '1517205193187doc', '转正申请', 1, 1);
-INSERT INTO `userfile` VALUES (3, '离职申请', '2018-01-29 14:02:07', 1, '1517205727863.xlsx', '离职申请', 1, 1);
-INSERT INTO `userfile` VALUES (4, '转正申请', '2018-01-29 14:02:07', 0, '1517207278890.sql', '转正申请', 1, 1);
-INSERT INTO `userfile` VALUES (5, '转正申请', '2018-01-29 14:02:07', 0, '1517207012186.doc', '转正申请', 1, 1);
+INSERT INTO `user_file` VALUES (1, '1492516881087.txt', '转正', '转正申请', '2017-04-18 20:01', 1, 1);
+INSERT INTO `user_file` VALUES (2, '1517205193187doc', '转正申请', '转正申请', '2018-01-29 13:53:13', 1, 1);
+INSERT INTO `user_file` VALUES (3, '1517205727863.xlsx', '离职申请', '离职申请', '2018-01-29 14:02:07', 1, 1);
+INSERT INTO `user_file` VALUES (4, '156165165.jpg', '日语发音', '日语发音', '2020-05-12 21:05:34', 1, 0);
+INSERT INTO `user_file` VALUES (5, '1517207012186.doc', '转正申请', '转正申请', '2018-01-29 14:02:07', 2, 0);
+INSERT INTO `user_file` VALUES (7, 'ace3b6bc7e4b6518d67571bd85781791_720w.jpg', '日语发音', '日语发音', '2020-05-12 21:09:57', 1, 0);
+INSERT INTO `user_file` VALUES (8, 'ace3b6bc7e4b6518d67571bd85781791_720w.jpg', '日语发音', '日语发音', '2020-05-12 21:10:52', 1, 0);
+INSERT INTO `user_file` VALUES (9, 'ace3b6bc7e4b6518d67571bd85781791_720w.jpg', '日语发音', '日语发音', '2020-05-12 21:13:40', 1, 0);
+INSERT INTO `user_file` VALUES (10, 'ace3b6bc7e4b6518d67571bd85781791_720w.jpg', '日语发音', '日语发音', '2020-05-12 21:15:03', 1, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

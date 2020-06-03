@@ -23,7 +23,7 @@
         apply_id, apply_title, apply_comment, user_pid, apply_date, apply_end_date, approve_comment,
         approve_user_pid, apply_status
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="applyMap">a'w'd
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="applyMap">
         <!--@mbg.generated-->
         select
         <include refid="Base_Column_List"/>

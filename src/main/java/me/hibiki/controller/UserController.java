@@ -41,7 +41,6 @@ public class UserController {
         }
         PageInfo<UserExtend> pageInfo = userService.listSelectiveUserExtends(user, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         List<UserExtend> userExtends = pageInfo.getList();
-        System.out.println(userExtends);
         long total = pageInfo.getTotal();
         UserJson userJson = new UserJson();
         userJson.setUsers(userExtends);
